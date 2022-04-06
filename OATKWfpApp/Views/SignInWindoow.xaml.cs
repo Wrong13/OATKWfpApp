@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OATKWfpApp.CFModels;
 
 namespace OATKWfpApp
 {
@@ -20,9 +21,23 @@ namespace OATKWfpApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public OatkContext db;
         public MainWindow()
         {
             InitializeComponent();
+            db = new OatkContext();
+        }
+
+        private void SignInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var ThisUser = db.Users
+                .Where(x => x.Login == LoginBox.Text)
+                .Where(x => x.Password == PassBox.Password)
+                .ToList();
+            if (ThisUser.Count > 0)
+                MessageBox.Show("Збс");
+            else
+                MessageBox.Show("Не удалось найти запись");
         }
     }
 }

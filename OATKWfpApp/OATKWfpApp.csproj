@@ -79,6 +79,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CFModels\OatkContext.cs" />
+    <Compile Include="CFModels\User.cs" />
+    <Compile Include="Migrations\202204061103025_InitialCreate.cs" />
+    <Compile Include="Migrations\202204061103025_InitialCreate.designer.cs">
+      <DependentUpon>202204061103025_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204061115598_rep.cs" />
+    <Compile Include="Migrations\202204061115598_rep.designer.cs">
+      <DependentUpon>202204061115598_rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Views\SignInWindoow.xaml.cs">
       <DependentUpon>SignInWindoow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -98,6 +109,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202204061103025_InitialCreate.resx">
+      <DependentUpon>202204061103025_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204061115598_rep.resx">
+      <DependentUpon>202204061115598_rep.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
