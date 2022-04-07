@@ -1,0 +1,45 @@
+﻿<Window x:Class="OATKWfpApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OATKWfpApp.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="450" MinWidth="850"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Background="#FF53DFC6">
+            <StackPanel>
+                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
+                    BorderThickness="3" Margin="10,10,10,10"
+                    Content="Все заказы"
+                        x:Name="AllOrdersBtn"
+                        Click="AllOrdersBtn_Click"
+                    />
+                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
+                    BorderThickness="3" Margin="10,10,10,10"
+                    Content="Пользователи"
+                    />
+                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
+                    BorderThickness="3" Margin="10,10,10,10"
+                    Content="Отправить заказ"
+                    />
+                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
+                    BorderThickness="3" Margin="10,10,10,10"
+                    Content="История заказов"
+                    />
+            </StackPanel>
+        </Border>
+
+        <Frame Grid.Column="1" x:Name="MainFrm">
+            
+        </Frame>
+    </Grid>
+</Window>

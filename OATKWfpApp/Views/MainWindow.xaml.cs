@@ -10,38 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OATKWfpApp.CFModels;
 
-namespace OATKWfpApp
+namespace OATKWfpApp.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public OatkContext db;
+        OatkContext db;
         public MainWindow()
         {
             InitializeComponent();
-            db = new OatkContext();
         }
 
-        private void SignInBtn_Click(object sender, RoutedEventArgs e)
+        private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-            var ThisUser = db.Users
-                .Where(x => x.Login == LoginBox.Text)
-                .Where(x => x.Password == PassBox.Password)
-                .ToList();
-            if (ThisUser.Count > 0)
-            {
-                Views.MainWindow main = new Views.MainWindow();
-                this.Close();
-                main.Show();
-            }
-            else
-                MessageBox.Show("Не удалось найти запись");
+            MainFrm.Navigate(new Uri("/Pages/PageAllOrders.xaml",UriKind.Relative));
         }
     }
 }

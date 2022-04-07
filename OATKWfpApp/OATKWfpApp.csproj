@@ -71,6 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\PageAllOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SignInWindoow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,7 +87,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CFModels\Client.cs" />
+    <Compile Include="CFModels\HistoryOrder.cs" />
     <Compile Include="CFModels\OatkContext.cs" />
+    <Compile Include="CFModels\Order.cs" />
     <Compile Include="CFModels\User.cs" />
     <Compile Include="Migrations\202204061103025_InitialCreate.cs" />
     <Compile Include="Migrations\202204061103025_InitialCreate.designer.cs">
@@ -89,7 +100,37 @@
     <Compile Include="Migrations\202204061115598_rep.designer.cs">
       <DependentUpon>202204061115598_rep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204070925438_add2Tables.cs" />
+    <Compile Include="Migrations\202204070925438_add2Tables.designer.cs">
+      <DependentUpon>202204070925438_add2Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204070930129_asa.cs" />
+    <Compile Include="Migrations\202204070930129_asa.designer.cs">
+      <DependentUpon>202204070930129_asa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204070933313_HWE.cs" />
+    <Compile Include="Migrations\202204070933313_HWE.designer.cs">
+      <DependentUpon>202204070933313_HWE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204070937267_HWEfsd.cs" />
+    <Compile Include="Migrations\202204070937267_HWEfsd.designer.cs">
+      <DependentUpon>202204070937267_HWEfsd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204071034073_AddTableHistoryes.cs" />
+    <Compile Include="Migrations\202204071034073_AddTableHistoryes.designer.cs">
+      <DependentUpon>202204071034073_AddTableHistoryes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204071036519_AddTableHistoryes1.cs" />
+    <Compile Include="Migrations\202204071036519_AddTableHistoryes1.designer.cs">
+      <DependentUpon>202204071036519_AddTableHistoryes1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Pages\PageAllOrders.xaml.cs">
+      <DependentUpon>PageAllOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignInWindoow.xaml.cs">
       <DependentUpon>SignInWindoow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,6 +155,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204061115598_rep.resx">
       <DependentUpon>202204061115598_rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204070925438_add2Tables.resx">
+      <DependentUpon>202204070925438_add2Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204070930129_asa.resx">
+      <DependentUpon>202204070930129_asa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204070933313_HWE.resx">
+      <DependentUpon>202204070933313_HWE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204070937267_HWEfsd.resx">
+      <DependentUpon>202204070937267_HWEfsd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204071034073_AddTableHistoryes.resx">
+      <DependentUpon>202204071034073_AddTableHistoryes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204071036519_AddTableHistoryes1.resx">
+      <DependentUpon>202204071036519_AddTableHistoryes1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

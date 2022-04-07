@@ -53,6 +53,8 @@
             <PasswordBox x:Name="PassBox" Margin="30,10,30,10"/>
         </Border>
 
-        <Button x:Name="SignInBtn" Grid.Column="1" Grid.Row="5" Background="#FF53DFC6" Cursor="Hand" Content="Войти" FontSize="20" Click="SignInBtn_Click"/>
+        <Button x:Name="SignInBtn" Grid.Column="1" Grid.Row="5" Background="#FF53DFC6" Cursor="Hand" Content="Войти" FontSize="20" Click="SignInBtn_Click">
+            
+        </Button>
     </Grid>
 </Window>

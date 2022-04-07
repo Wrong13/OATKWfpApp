@@ -14,6 +14,8 @@ namespace OATKWfpApp.CFModels
 
             }
         public DbSet<User> Users { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
     }
 }
