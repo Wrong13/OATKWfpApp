@@ -124,10 +124,15 @@
     <Compile Include="Migrations\202204071036519_AddTableHistoryes1.designer.cs">
       <DependentUpon>202204071036519_AddTableHistoryes1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204081122167_HistoryOrders.cs" />
+    <Compile Include="Migrations\202204081122167_HistoryOrders.designer.cs">
+      <DependentUpon>202204081122167_HistoryOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\PageAllOrders.xaml.cs">
       <DependentUpon>PageAllOrders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AllOrdersVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -173,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204071036519_AddTableHistoryes1.resx">
       <DependentUpon>202204071036519_AddTableHistoryes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204081122167_HistoryOrders.resx">
+      <DependentUpon>202204081122167_HistoryOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

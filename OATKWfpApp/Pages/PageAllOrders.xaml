@@ -20,8 +20,14 @@
 
         <Border Grid.Row="2">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
-                <ListBox>
-                    
+                <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10,10,10,10">
+                                <TextBlock Text="{Binding NameProduct}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </ScrollViewer>
         </Border>
