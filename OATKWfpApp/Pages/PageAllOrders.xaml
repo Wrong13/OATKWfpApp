@@ -25,6 +25,9 @@
                         <DataTemplate>
                             <StackPanel Margin="10,10,10,10">
                                 <TextBlock Text="{Binding NameProduct}"/>
+                                <TextBlock Text="{Binding Price}"/>
+                                <TextBlock Text="{Binding Created}"/>
+                                <TextBlock Text="{Binding Name}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

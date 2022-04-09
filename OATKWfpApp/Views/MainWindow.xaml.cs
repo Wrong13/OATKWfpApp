@@ -20,7 +20,6 @@ namespace OATKWfpApp.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        OatkContext db;
         public MainWindow()
         {
             InitializeComponent();
