@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAllOrders">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
@@ -20,14 +19,18 @@
 
         <Border Grid.Row="2">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
-                <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}">
+                <ListBox x:Name="OrderListBox" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10,10,10,10">
-                                <TextBlock Text="{Binding NameProduct}"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label Content="Номер заказа: "/>
+                                    <Label Content="{Binding OrderId}"/>
+                                </StackPanel>
+                                
+                                <TextBlock Text="{Binding ClientName}"/>
+                                <TextBlock Text="{Binding NameProd}"/>
                                 <TextBlock Text="{Binding Price}"/>
-                                <TextBlock Text="{Binding Created}"/>
-                                <TextBlock Text="{Binding Name}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

@@ -20,10 +20,21 @@ namespace OATKWfpApp.Pages
     /// </summary>
     public partial class PageAllOrders : Page
     {
+        CFModels.OatkContext db;
         public PageAllOrders()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel.AllOrdersVM();
+            this.DataContext = new ViewModel.AllOrdersVM(); 
+            db = new CFModels.OatkContext();
+            OrderListBox.ItemsSource = db.Orders.Join(db.Clients,
+                o => o.ClientId, c => c.Id,
+            (o, c) => new
+            {
+                OrderId = o.Id,
+                ClientName = c.Name,
+                NameProd = o.NameProduct,
+                Price = o.Price
+            }).ToList();
         }
     }
 }
