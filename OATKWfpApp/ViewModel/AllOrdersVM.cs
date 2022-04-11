@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
@@ -16,9 +15,6 @@ namespace OATKWfpApp.ViewModel
 
         IEnumerable<CFModels.Order> orders;
         IEnumerable<CFModels.Client> clients;
-
-
-
 
         public IEnumerable<CFModels.Order> Orders
         {
@@ -36,16 +32,15 @@ namespace OATKWfpApp.ViewModel
                 OnPropertyChanged("Clients");
             }
         }
-
         public AllOrdersVM()
         {
             db = new CFModels.OatkContext();
             db.Orders.Load();
             db.Clients.Load();
             Orders = db.Orders.Local.ToBindingList();
-            Clients = db.Clients.Local.ToBindingList();                     
+            Clients = db.Clients.Local.ToBindingList();
+            
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
