@@ -13,6 +13,7 @@
             <RowDefinition Height="0.3*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <Border VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Все заказы" FontSize="30px"/>
@@ -23,17 +24,53 @@
                 <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10,10,10,10">
-                                <TextBlock Text="{Binding NameProduct}"/>
-                                <TextBlock Text="{Binding Price}"/>
-                                <TextBlock Text="{Binding Created}"/>
-                                <TextBlock Text="{Binding Name}"/>
+                            <StackPanel Margin="10,10,10,10" MinWidth="650" MaxWidth="1000">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Номер: "/>
+                                    <TextBlock Text="{Binding Id}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Название товара(ов): "/>
+                                    <TextBlock Text="{Binding NameProduct}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Имя заказчика: "/>
+                                    <TextBlock Text="{Binding Client.Name}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Created}" />
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Column="7">
+                                            <TextBlock Text="{Binding Price}"/>
+                                            <TextBlock Text=" ₽"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </ScrollViewer>
         </Border>
-        
+        <Border Grid.Row="3">
+            <StackPanel Orientation="Horizontal" >
+                <Button/>
+                <Button/>
+                <Button/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

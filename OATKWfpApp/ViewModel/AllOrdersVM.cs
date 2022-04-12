@@ -37,9 +37,7 @@ namespace OATKWfpApp.ViewModel
             db = new CFModels.OatkContext();
             db.Orders.Load();
             db.Clients.Load();
-            Orders = db.Orders.Local.ToBindingList();
-            Clients = db.Clients.Local.ToBindingList();
-            
+            Orders = db.Orders.Local.ToBindingList();            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
