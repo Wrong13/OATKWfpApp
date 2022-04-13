@@ -30,13 +30,14 @@ namespace OATKWfpApp
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            var ThisUser = db.Users
+            CFModels.User ThisUser = new User();
+            ThisUser = db.Users
                 .Where(x => x.Login == LoginBox.Text)
                 .Where(x => x.Password == PassBox.Password)
-                .ToList();
-            if (ThisUser.Count > 0)
+                .FirstOrDefault();
+            if (ThisUser != null)
             {
-                Views.MainWindow main = new Views.MainWindow();
+                Views.MainWindow main = new Views.MainWindow(ThisUser.UserID);
                 this.Close();
                 main.Show();
             }

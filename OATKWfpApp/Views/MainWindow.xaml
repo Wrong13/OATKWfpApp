@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OATKWfpApp.Views"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="850"
+        Title="MainWindow" MinHeight="450" MinWidth="1000"
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         >
@@ -26,6 +26,7 @@
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"
                     Content="Пользователи"
+                    x:Name="AllUsersBtn" Click="AllUsersBtn_Click"
                     />
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"

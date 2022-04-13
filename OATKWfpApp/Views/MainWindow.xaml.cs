@@ -20,14 +20,25 @@ namespace OATKWfpApp.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        OatkContext db;
+        public MainWindow(int UserId)
         {
             InitializeComponent();
+            var ThisUser = db.Users.Where(x=>x.UserID == UserId).FirstOrDefault();
+            if (ThisUser.UserRole == "admin")
+            {
+
+            }    
         }
 
         private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrm.Navigate(new Uri("/Pages/PageAllOrders.xaml",UriKind.Relative));
+        }
+
+        private void AllUsersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrm.Navigate(new Uri("/Pages/AllUserPage.xaml", UriKind.Relative));
         }
     }
 }
