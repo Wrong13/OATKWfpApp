@@ -14,6 +14,7 @@ namespace OATKWfpApp.ViewModel
         CFModels.OatkContext db;
 
         IEnumerable<CFModels.Order> orders;
+        IEnumerable<CFModels.Client> clients;
         public IEnumerable<CFModels.Order> Orders
         {
             get { return orders; }
@@ -21,11 +22,21 @@ namespace OATKWfpApp.ViewModel
                 OnPropertyChanged("Orders");
             }           
         }
+        public IEnumerable<CFModels.Client> Clients
+        {
+            get { return clients; }
+            set { clients = value;
+                OnPropertyChanged("Clients");
+                }
+        }
+
         public AllOrdersVM()
         {
             db = new CFModels.OatkContext();
             db.Orders.Load();
-            Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();           
+
+            Clients = db.Clients.Local.ToBindingList();
+            Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
