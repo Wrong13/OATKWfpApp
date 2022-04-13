@@ -21,10 +21,15 @@ namespace OATKWfpApp.Views
     public partial class MainWindow : Window
     {
         OatkContext db;
+        public int IdUser = 0;
+
         public MainWindow(int UserId)
         {
             InitializeComponent();
             db = new OatkContext();
+
+            IdUser = UserId;
+
             var ThisUser = db.Users.Where(x => x.UserID == UserId).FirstOrDefault();
             string userRole = db.UserRoles.Where(x=> x.ID == ThisUser.UserRoleID).Select(x=>x.Name).FirstOrDefault();
             if (userRole == "kass")
@@ -36,7 +41,6 @@ namespace OATKWfpApp.Views
             {
 
             }
-
         }
 
         private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)

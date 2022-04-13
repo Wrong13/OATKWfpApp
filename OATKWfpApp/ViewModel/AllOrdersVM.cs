@@ -25,7 +25,7 @@ namespace OATKWfpApp.ViewModel
         {
             db = new CFModels.OatkContext();
             db.Orders.Load();
-            Orders = db.Orders.Local.ToBindingList();            
+            Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();           
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
