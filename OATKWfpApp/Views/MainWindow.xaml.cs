@@ -24,11 +24,19 @@ namespace OATKWfpApp.Views
         public MainWindow(int UserId)
         {
             InitializeComponent();
-            var ThisUser = db.Users.Where(x=>x.UserID == UserId).FirstOrDefault();
-            if (ThisUser.UserRole == "admin")
+            db = new OatkContext();
+            var ThisUser = db.Users.Where(x => x.UserID == UserId).FirstOrDefault();
+            string userRole = db.UserRoles.Where(x=> x.ID == ThisUser.UserRoleID).Select(x=>x.Name).FirstOrDefault();
+            if (userRole == "kass")
+            {
+                AllUsersBtn.Visibility = Visibility.Collapsed;
+                HistoryOrdersBtn.Visibility = Visibility.Collapsed;
+            }
+            else if (userRole == "superadmin")
             {
 
-            }    
+            }
+
         }
 
         private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)
@@ -38,7 +46,7 @@ namespace OATKWfpApp.Views
 
         private void AllUsersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrm.Navigate(new Uri("/Pages/AllUserPage.xaml", UriKind.Relative));
+            MainFrm.Navigate(new Uri("/Pages/AllUsersPage.xaml", UriKind.Relative));
         }
     }
 }

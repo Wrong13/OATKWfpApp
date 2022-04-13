@@ -35,6 +35,7 @@
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"
                     Content="История заказов"
+                    x:Name="HistoryOrdersBtn"
                     />
             </StackPanel>
         </Border>

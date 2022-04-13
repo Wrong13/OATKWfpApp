@@ -17,6 +17,7 @@ namespace OATKWfpApp.CFModels
         public string Login { get; set; }
         [MaxLength(15)]
         public string Password { get; set; }
-        public string UserRole { get; set; }
+        public int UserRoleID { get; set; }
+        public UserRole UserRole { get; set; }
     }
 }

@@ -96,6 +96,7 @@
     <Compile Include="CFModels\OatkContext.cs" />
     <Compile Include="CFModels\Order.cs" />
     <Compile Include="CFModels\User.cs" />
+    <Compile Include="CFModels\UserRole.cs" />
     <Compile Include="Migrations\202204061103025_InitialCreate.cs" />
     <Compile Include="Migrations\202204061103025_InitialCreate.designer.cs">
       <DependentUpon>202204061103025_InitialCreate.cs</DependentUpon>
@@ -131,6 +132,26 @@
     <Compile Include="Migrations\202204081122167_HistoryOrders.cs" />
     <Compile Include="Migrations\202204081122167_HistoryOrders.designer.cs">
       <DependentUpon>202204081122167_HistoryOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204130650067_123123.cs" />
+    <Compile Include="Migrations\202204130650067_123123.designer.cs">
+      <DependentUpon>202204130650067_123123.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204130655550_Step2.cs" />
+    <Compile Include="Migrations\202204130655550_Step2.designer.cs">
+      <DependentUpon>202204130655550_Step2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204130657562_Step3.cs" />
+    <Compile Include="Migrations\202204130657562_Step3.designer.cs">
+      <DependentUpon>202204130657562_Step3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204130659404_Step4.cs" />
+    <Compile Include="Migrations\202204130659404_Step4.designer.cs">
+      <DependentUpon>202204130659404_Step4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204130700554_Step5.cs" />
+    <Compile Include="Migrations\202204130700554_Step5.designer.cs">
+      <DependentUpon>202204130700554_Step5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\AllUsersPage.xaml.cs">
@@ -188,6 +209,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204081122167_HistoryOrders.resx">
       <DependentUpon>202204081122167_HistoryOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204130650067_123123.resx">
+      <DependentUpon>202204130650067_123123.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204130655550_Step2.resx">
+      <DependentUpon>202204130655550_Step2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204130657562_Step3.resx">
+      <DependentUpon>202204130657562_Step3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204130659404_Step4.resx">
+      <DependentUpon>202204130659404_Step4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204130700554_Step5.resx">
+      <DependentUpon>202204130700554_Step5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
