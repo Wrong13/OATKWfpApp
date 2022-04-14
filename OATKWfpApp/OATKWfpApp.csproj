@@ -75,7 +75,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageAllOrders.xaml">
+    <Page Include="Pages\PageActualOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,10 +157,10 @@
     <Compile Include="Pages\AllUsersPage.xaml.cs">
       <DependentUpon>AllUsersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageAllOrders.xaml.cs">
-      <DependentUpon>PageAllOrders.xaml</DependentUpon>
+    <Compile Include="Pages\PageActualOrders.xaml.cs">
+      <DependentUpon>PageActualOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\AllOrdersVM.cs" />
+    <Compile Include="ViewModel\ActualOrdersVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

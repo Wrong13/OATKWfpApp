@@ -45,12 +45,21 @@ namespace OATKWfpApp.Views
 
         private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrm.Navigate(new Uri("/Pages/PageAllOrders.xaml",UriKind.Relative));
         }
 
         private void AllUsersBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrm.Navigate(new Uri("/Pages/AllUsersPage.xaml", UriKind.Relative));
+        }
+
+        private void HistoryOrdersBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ActualOrdersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrm.Navigate(new Uri("/Pages/PageActualOrders.xaml", UriKind.Relative));
         }
     }
 }

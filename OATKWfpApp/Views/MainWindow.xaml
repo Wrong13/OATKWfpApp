@@ -21,7 +21,6 @@
                     BorderThickness="3" Margin="10,10,10,10"
                     Content="Все заказы"
                         x:Name="AllOrdersBtn"
-                        Click="AllOrdersBtn_Click"
                     />
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"
@@ -31,16 +30,19 @@
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"
                     Content="Отправить заказ"
+                        x:Name="ActualOrdersBtn"
+                        Click="ActualOrdersBtn_Click"
                     />
                 <Button Cursor="Hand" Background="White" Foreground="#DD020202"
                     BorderThickness="3" Margin="10,10,10,10"
                     Content="История заказов"
                     x:Name="HistoryOrdersBtn"
+                        Click="HistoryOrdersBtn_Click"
                     />
             </StackPanel>
         </Border>
 
-        <Frame Grid.Column="1" x:Name="MainFrm">
+        <Frame Grid.Column="1" x:Name="MainFrm" NavigationUIVisibility="Hidden">
             
         </Frame>
     </Grid>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OATKWfpApp.ViewModel
 {
-    public class AllOrdersVM : INotifyPropertyChanged
+    public class ActualOrdersVM : INotifyPropertyChanged
     {
         CFModels.OatkContext db;
 
@@ -30,13 +30,15 @@ namespace OATKWfpApp.ViewModel
                 }
         }
 
-        public AllOrdersVM()
+        public ActualOrdersVM()
         {
             db = new CFModels.OatkContext();
+            db.Clients.Load();
             db.Orders.Load();
+            
 
             Clients = db.Clients.Local.ToBindingList();
-            Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
+            Orders = db.Orders.Local.Where(x=> x.IsActual == true).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
