@@ -39,7 +39,7 @@ namespace OATKWfpApp
             var ThisUser = await db.Users
                 .Where(x => x.Login == LoginBox.Text)
                 .Where(x => x.Password == PassBox.Password)
-                .SingleAsync();
+                .FirstOrDefaultAsync();
             if (ThisUser != null)
             {
                 Views.MainWindow main = new Views.MainWindow(ThisUser.UserID);
