@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,13 +34,12 @@ namespace OATKWfpApp
             this.Close();
         }
 
-        private void SignInBtn_Click(object sender, RoutedEventArgs e)
+        private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            CFModels.User ThisUser = new User();
-            ThisUser = db.Users
+            var ThisUser = await db.Users
                 .Where(x => x.Login == LoginBox.Text)
                 .Where(x => x.Password == PassBox.Password)
-                .FirstOrDefault();
+                .SingleAsync();
             if (ThisUser != null)
             {
                 Views.MainWindow main = new Views.MainWindow(ThisUser.UserID);
