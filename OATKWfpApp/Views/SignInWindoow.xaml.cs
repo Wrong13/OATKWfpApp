@@ -28,6 +28,11 @@ namespace OATKWfpApp
             db = new OatkContext();
         }
 
+        private void Close_Window(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
             CFModels.User ThisUser = new User();
