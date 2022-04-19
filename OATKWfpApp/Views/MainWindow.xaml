@@ -3,38 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OATKWfpApp.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="1000"
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        FontSize="18"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <Border Background="#FF53DFC6">
-            <StackPanel>
-                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
-                    BorderThickness="3" Margin="10,10,10,10"
+
+        <Border Background="#07bf96">
+            <StackPanel VerticalAlignment="Center">
+                <Button materialDesign:ButtonAssist.CornerRadius="30 20 0 0"
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     Content="Все заказы"
                         x:Name="AllOrdersBtn"
                     />
-                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
-                    BorderThickness="3" Margin="10,10,10,10"
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     Content="Пользователи"
                     x:Name="AllUsersBtn" Click="AllUsersBtn_Click"
                     />
-                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
-                    BorderThickness="3" Margin="10,10,10,10"
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     Content="Отправить заказ"
                         x:Name="ActualOrdersBtn"
                         Click="ActualOrdersBtn_Click"
                     />
-                <Button Cursor="Hand" Background="White" Foreground="#DD020202"
-                    BorderThickness="3" Margin="10,10,10,10"
+                <Button materialDesign:ButtonAssist.CornerRadius="0 0 20 30"
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     Content="История заказов"
                     x:Name="HistoryOrdersBtn"
                         Click="HistoryOrdersBtn_Click"

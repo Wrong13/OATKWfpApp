@@ -27,7 +27,7 @@
 
         <!--Левая секция-->
         <Border Background="#07bf96"
-                CornerRadius="10 0 0 10"
+                CornerRadius="50 0 0 10"
                 ClipToBounds="True">
 
             <Border.Clip>
