@@ -160,7 +160,7 @@
     <Compile Include="Pages\PageActualOrders.xaml.cs">
       <DependentUpon>PageActualOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ActualOrdersVM.cs" />
+    <Compile Include="ViewModel\OrdersVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

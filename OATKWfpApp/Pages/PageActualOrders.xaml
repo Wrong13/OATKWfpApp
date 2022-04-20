@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAllOrders"
-      FontFamily="{DynamicResource MaterialDesignFont}"      
+      FontFamily="{DynamicResource MaterialDesignFont}" 
+      FontSize="18"
       >
 
     <Grid>
@@ -37,9 +38,11 @@
                     <TextBlock Text="Цене" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
                     <TextBlock Text="Клиенту" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
                 </ComboBox>
-                <Button Content="Поиск" Background="#FF53DFC6" FontSize="18" BorderThickness="0">
-                    
-                </Button>
+                <Button Content="Поиск" 
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        />
+
+
             </StackPanel>
         </Border>
         
@@ -50,7 +53,9 @@
                          >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                                <StackPanel Margin="10,10,10,10" MinWidth="650" MaxWidth="1000">
+                                <StackPanel Margin="10,10,10,10" MinWidth="650" MaxWidth="1000" 
+                                            x:Name="ActualOrderSP"
+                                            >
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Номер: "/>
                                         <TextBlock Text="{Binding Id}"/>
@@ -88,6 +93,22 @@
                                 </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    <ListBox.ContextMenu>
+                        <ContextMenu 
+                            Background="#07bf96"
+                            Foreground="White"
+                            >
+                            <MenuItem Header="Сделать статус оплаченным"
+                                      CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                                      Command="{Binding PaidStatusOrder}"/>
+                            <MenuItem Header="Напечатать чек"/>
+                            <MenuItem Header="Отправить на сборку"/>
+                            <MenuItem Header="Удалить заказ"
+                                      CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                                      Command="{Binding DelOrder}"
+                                      />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
                 </ListBox>
             </ScrollViewer>
         </Border>

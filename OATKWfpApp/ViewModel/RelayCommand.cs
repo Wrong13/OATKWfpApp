@@ -31,7 +31,7 @@ namespace OATKWfpApp.ViewModel
 
         public void Execute(object parameter)
         {
-            this.Execute(parameter);
+            this.execute(parameter);
         }
     }
 }
