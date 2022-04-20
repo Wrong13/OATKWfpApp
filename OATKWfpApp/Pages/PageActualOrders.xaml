@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:OATKWfpApp.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAllOrders"
@@ -49,7 +50,7 @@
         <Border Grid.Row="2">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
                 <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}" Style="{StaticResource MaterialDesignNavigationListBox}"
-                         
+                         Tag="{Binding ElementName=OrderListBox}"
                          >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -93,8 +94,11 @@
                                 </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    <ListBox.Resources>
+                        <local:BindingProxy x:Key="Proxy" Data="{Binding}"/>
+                    </ListBox.Resources>
                     <ListBox.ContextMenu>
-                        <ContextMenu 
+                        <ContextMenu Opened="ContextMenu_Opened"
                             Background="#07bf96"
                             Foreground="White"
                             >
@@ -104,14 +108,18 @@
                             <MenuItem Header="Напечатать чек"/>
                             <MenuItem Header="Отправить на сборку"/>
                             <MenuItem Header="Удалить заказ"
-                                      CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
-                                      Command="{Binding DelOrder}"
+                                    Command="{Binding PlacementTarget.Tag.DataContext.DelOrder, 
+                                            RelativeSource={RelativeSource Mode=FindAncestor,                                                                                         
+                                                                           AncestorType=ContextMenu}}"
                                       />
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
             </ScrollViewer>
         </Border>
-        
+        <Button Grid.Row="3" 
+                CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                                      Command="{Binding DelOrder}"
+                />
     </Grid>
 </Page>

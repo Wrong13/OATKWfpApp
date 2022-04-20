@@ -32,6 +32,7 @@ namespace OATKWfpApp.ViewModel
         }
 
         private RelayCommand paidStatusOrder;
+        private RelayCommand delOrder;
         public RelayCommand PaidStatusOrder
         {
             get
@@ -50,39 +51,44 @@ namespace OATKWfpApp.ViewModel
                     }));
             }
         }
-        private RelayCommand delOrder;
-        public RelayCommand DelOrder
-        {
-            get
-            {
-                return delOrder ?? (delOrder = new RelayCommand((selectedItem) =>
-                {
-                    
-                    CFModels.Order order = selectedItem as CFModels.Order;
-                    db.Orders.Remove(order);
-                    db.SaveChanges();
-                }));
-            }
-        }
+        
+        
 
 
-        public OrdersVM(int ThisUserId)
+        public OrdersVM()
         {
             db = new CFModels.OatkContext();
             db.Clients.Load();
             db.Orders.Load();
             db.UserRoles.Load();
 
-            var ThisUser = db.Users
-                .Where(x => x.UserID == ThisUserId)
-                .FirstOrDefault();
+            //var ThisUser = db.Users
+            //    .Where(x => x.UserID == ThisUserId)
+            //    .FirstOrDefault();
 
-            if (ThisUser.UserRole.Name == "kass")
-                Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
-            else
-                Orders = db.Orders.Local.ToBindingList();
+            //if (ThisUser.UserRole.Name == "kass")
+            //    Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
+            //else
+            Orders = db.Orders.Local.ToBindingList();
 
             Clients = db.Clients.Local.ToBindingList();
+        }
+
+        public RelayCommand DelOrder
+        {
+            get
+            {
+                return delOrder ?? (delOrder = new RelayCommand((selectedItem) =>
+                {
+                    if (selectedItem == null)
+                        return;
+
+                    CFModels.Order orders = selectedItem as CFModels.Order;
+                    
+                    db.Orders.Remove(orders);
+                    db.SaveChanges();
+                }));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
