@@ -13,6 +13,8 @@ namespace OATKWfpApp.ViewModel
     {
         CFModels.OatkContext db;
 
+        public string SelectetValue { get; set; }
+
         IEnumerable<CFModels.Order> orders;
         IEnumerable<CFModels.Client> clients;
 
@@ -33,6 +35,7 @@ namespace OATKWfpApp.ViewModel
 
         private RelayCommand paidStatusOrder;
         private RelayCommand delOrder;
+        private RelayCommand selectedValueCmbBox;
         public RelayCommand PaidStatusOrder
         {
             get
@@ -40,8 +43,8 @@ namespace OATKWfpApp.ViewModel
                 return paidStatusOrder ??
                     (paidStatusOrder = new RelayCommand((selectedItem) =>
                     {
-                        if (selectedItem == null)
-                            return;
+                        //if (selectedItem == null)
+                        //    return;
                         CFModels.Order order = selectedItem as CFModels.Order;
                         int orderID = order.Id;
                         order = db.Orders.Find(orderID);
@@ -81,12 +84,24 @@ namespace OATKWfpApp.ViewModel
                 return delOrder ?? (delOrder = new RelayCommand((selectedItem) =>
                 {
                     if (selectedItem == null)
-                        return;
+                       return;
 
-                    CFModels.Order orders = selectedItem as CFModels.Order;
+                    var order = selectedItem as CFModels.Order;
                     
-                    db.Orders.Remove(orders);
+                    db.Orders.Remove(order);
                     db.SaveChanges();
+                }));
+            }
+        }
+        public RelayCommand SelectedDataSourceCmBox
+        {
+            get
+            {
+                return selectedValueCmbBox ?? (selectedValueCmbBox = new RelayCommand((obj) =>
+                {
+                    if (obj == null)
+                        return;
+                    //Orders.GroupBy();
                 }));
             }
         }

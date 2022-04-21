@@ -31,11 +31,14 @@
                 <TextBlock Text="Сортировать по:" Margin="5,5,5,5" FontSize="18" Height="20"/>
                 <ComboBox Text="Выбери" MinWidth="50" MaxWidth="150" Margin="5,5,50,5"
                           Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          
+                          Selected="{Binding }"
+                          SelectedValue="{Binding SelectedDataSourceCmBox}"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           >
-                    <TextBlock Text="Имени" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
+                    <TextBlock Text="Имени" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"
+                               
+                               />
                     <TextBlock Text="Цене" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
                     <TextBlock Text="Клиенту" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
                 </ComboBox>
@@ -94,32 +97,71 @@
                                 </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+
                     <ListBox.Resources>
                         <local:BindingProxy x:Key="Proxy" Data="{Binding}"/>
                     </ListBox.Resources>
-                    <ListBox.ContextMenu>
-                        <ContextMenu Opened="ContextMenu_Opened"
+                    <!--#region -->
+                    <!--<ListBox.ContextMenu>
+                        <ContextMenu x:Name="CntMenu"
                             Background="#07bf96"
                             Foreground="White"
+                            
                             >
                             <MenuItem Header="Сделать статус оплаченным"
-                                      CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
-                                      Command="{Binding PaidStatusOrder}"/>
+                                      CommandParameter="{Binding ElementName=OrderListBox,
+                                Path=Parent}"
+                                      Command="{Binding PaidStatusOrder}"
+                                      />
                             <MenuItem Header="Напечатать чек"/>
                             <MenuItem Header="Отправить на сборку"/>
                             <MenuItem Header="Удалить заказ"
-                                    Command="{Binding PlacementTarget.Tag.DataContext.DelOrder, 
-                                            RelativeSource={RelativeSource Mode=FindAncestor,                                                                                         
-                                                                           AncestorType=ContextMenu}}"
-                                      />
+                                      CommandTarget="{Binding ElementName=OrderListBox,Path=TemplatedParent}"
+                                Command="{Binding DelOrder,RelativeSource={RelativeSource AncestorType=ListBoxItem},XPath=Value}"/>
                         </ContextMenu>
-                    </ListBox.ContextMenu>
+                    </ListBox.ContextMenu>-->
+                    <!--#endregion-->
                 </ListBox>
             </ScrollViewer>
         </Border>
-        <Button Grid.Row="3" 
-                CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
-                                      Command="{Binding DelOrder}"
+        <Border Grid.Row="3" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Отправить на сборку"
+                        FontSize="18"
+                        MinHeight="50"
+                        materialDesign:ButtonAssist.CornerRadius="22"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                
                 />
+                <Button Content="Сделать статус оплаченным" Grid.Column="1"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding PaidStatusOrder}"
+                        />
+                <Button Content="Напечатать чек" Grid.Column="2"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"/>
+                <Button Content="Удалить заказ" Grid.Column="3"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding DelOrder}"
+                        />
+            </Grid>
+        </Border>
+        
     </Grid>
 </Page>
