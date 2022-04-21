@@ -31,16 +31,14 @@
                 <TextBlock Text="Сортировать по:" Margin="5,5,5,5" FontSize="18" Height="20"/>
                 <ComboBox Text="Выбери" MinWidth="50" MaxWidth="150" Margin="5,5,50,5"
                           Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                          Selected="{Binding }"
-                          SelectedValue="{Binding SelectedDataSourceCmBox}"
+                          SelectedItem="{Binding SelectedUnit}"
+                          
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           >
-                    <TextBlock Text="Имени" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"
-                               
-                               />
-                    <TextBlock Text="Цене" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
-                    <TextBlock Text="Клиенту" FontSize="18" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
+                    <ComboBoxItem Content="Имени"/>
+                    <ComboBoxItem Content="Цене"/>
+                    
                 </ComboBox>
                 <Button Content="Поиск" 
                         Style="{StaticResource MaterialDesignOutlinedDarkButton}"

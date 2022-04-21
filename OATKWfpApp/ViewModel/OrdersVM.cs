@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace OATKWfpApp.ViewModel
 {
@@ -13,10 +16,14 @@ namespace OATKWfpApp.ViewModel
     {
         CFModels.OatkContext db;
 
-        public string SelectetValue { get; set; }
+        class FiltersCmb
+        {
+            public string Name { get; set; }
+        }
 
         IEnumerable<CFModels.Order> orders;
         IEnumerable<CFModels.Client> clients;
+
 
         public IEnumerable<CFModels.Order> Orders
         {
@@ -35,7 +42,7 @@ namespace OATKWfpApp.ViewModel
 
         private RelayCommand paidStatusOrder;
         private RelayCommand delOrder;
-        private RelayCommand selectedValueCmbBox;
+        
         public RelayCommand PaidStatusOrder
         {
             get
@@ -75,6 +82,8 @@ namespace OATKWfpApp.ViewModel
             Orders = db.Orders.Local.ToBindingList();
 
             Clients = db.Clients.Local.ToBindingList();
+
+            
         }
 
         public RelayCommand DelOrder
@@ -93,18 +102,26 @@ namespace OATKWfpApp.ViewModel
                 }));
             }
         }
-        public RelayCommand SelectedDataSourceCmBox
+
+        private string selectedUnit = "";
+        public string SelectedUnit
         {
-            get
+            get => selectedUnit;
+            set
             {
-                return selectedValueCmbBox ?? (selectedValueCmbBox = new RelayCommand((obj) =>
+                selectedUnit = value;
+
+                MessageBox.Show(selectedUnit);
+                if (selectedUnit.Contains("Цене"))
                 {
-                    if (obj == null)
-                        return;
-                    //Orders.GroupBy();
-                }));
+                    MessageBox.Show(selectedUnit.Contains("Цене").ToString());
+                    Orders.OrderBy(x => x.Price);
+                }
+                else if (selectedUnit.Contains("Имени"))
+                    Orders.OrderBy(x => x.NameProduct);
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
