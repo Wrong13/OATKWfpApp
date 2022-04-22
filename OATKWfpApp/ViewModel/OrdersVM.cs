@@ -67,10 +67,7 @@ namespace OATKWfpApp.ViewModel
 
         public OrdersVM()
         {
-            db = new CFModels.OatkContext();
-            db.Clients.Load();
-            db.Orders.Load();
-            db.UserRoles.Load();
+
 
             //var ThisUser = db.Users
             //    .Where(x => x.UserID == ThisUserId)
@@ -79,11 +76,38 @@ namespace OATKWfpApp.ViewModel
             //if (ThisUser.UserRole.Name == "kass")
             //    Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
             //else
-            Orders = db.Orders.Local.ToBindingList();
-
-            Clients = db.Clients.Local.ToBindingList();
 
             
+
+            LoadOrders();
+        }
+        public void LoadOrders(string Filter = null)
+        {
+
+            db = new CFModels.OatkContext();
+            db.Clients.Load();
+            db.Orders.Load();
+            db.UserRoles.Load();
+            Clients = db.Clients.Local.ToBindingList();
+            
+            if (Filter == null)
+                Orders = db.Orders.Local.ToBindingList();
+            else
+            {
+                orders = null;
+
+                if (Filter.Contains("Цене"))
+                {
+                    orders = db.Orders.OrderBy(x => x.Price).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (Filter.Contains("Имени"))
+                {
+                    orders = db.Orders.OrderBy(x => x.NameProduct).ToList();
+                    OnPropertyChanged("Orders");
+                }
+            }
+            db.Orders.Load();
         }
 
         public RelayCommand DelOrder
@@ -111,14 +135,7 @@ namespace OATKWfpApp.ViewModel
             {
                 selectedUnit = value;
 
-                MessageBox.Show(selectedUnit);
-                if (selectedUnit.Contains("Цене"))
-                {
-                    MessageBox.Show(selectedUnit.Contains("Цене").ToString());
-                    Orders.OrderBy(x => x.Price);
-                }
-                else if (selectedUnit.Contains("Имени"))
-                    Orders.OrderBy(x => x.NameProduct);
+                LoadOrders(selectedUnit);
             }
         }
 

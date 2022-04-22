@@ -36,7 +36,7 @@
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           >
-                    <ComboBoxItem Content="Имени"/>
+                    <ComboBoxItem Content="Имени" IsSelected="{Binding ElementName=OrderListBox,Path=GroupStyle.Default}"/>
                     <ComboBoxItem Content="Цене"/>
                     
                 </ComboBox>
@@ -52,6 +52,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Visible">
                 <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}" Style="{StaticResource MaterialDesignNavigationListBox}"
                          Tag="{Binding ElementName=OrderListBox}"
+                         IsSynchronizedWithCurrentItem="True"
                          >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -119,6 +120,9 @@
                         </ContextMenu>
                     </ListBox.ContextMenu>-->
                     <!--#endregion-->
+                    <ListBox.GroupStyle>
+                        <GroupStyle x:Name="Default" />
+                    </ListBox.GroupStyle>
                 </ListBox>
             </ScrollViewer>
         </Border>
