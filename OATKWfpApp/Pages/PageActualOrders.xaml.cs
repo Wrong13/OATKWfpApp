@@ -23,7 +23,7 @@ namespace OATKWfpApp.Pages
         public PageAllOrders(int UserId)
         {
             InitializeComponent();
-            this.DataContext = new ViewModel.OrdersVM();
+            this.DataContext = new ViewModel.OrdersVM(UserId);
         }
 
         

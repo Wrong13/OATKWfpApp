@@ -16,11 +16,6 @@ namespace OATKWfpApp.ViewModel
     {
         CFModels.OatkContext db;
 
-        class FiltersCmb
-        {
-            public string Name { get; set; }
-        }
-
         IEnumerable<CFModels.Order> orders;
         IEnumerable<CFModels.Client> clients;
 
@@ -62,53 +57,38 @@ namespace OATKWfpApp.ViewModel
             }
         }
         
-        
-
-
         public OrdersVM()
         {
 
-
-            //var ThisUser = db.Users
-            //    .Where(x => x.UserID == ThisUserId)
-            //    .FirstOrDefault();
-
-            //if (ThisUser.UserRole.Name == "kass")
-            //    Orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
-            //else
-
-            
-
-            LoadOrders();
         }
-        public void LoadOrders(string Filter = null)
-        {
 
+
+        public OrdersVM(int ThisUserId)
+        {
             db = new CFModels.OatkContext();
             db.Clients.Load();
             db.Orders.Load();
             db.UserRoles.Load();
-            Clients = db.Clients.Local.ToBindingList();
-            
-            if (Filter == null)
-                Orders = db.Orders.Local.ToBindingList();
-            else
-            {
-                orders = null;
 
-                if (Filter.Contains("Цене"))
-                {
-                    orders = db.Orders.OrderBy(x => x.Price).ToList();
-                    OnPropertyChanged("Orders");
-                }
-                else if (Filter.Contains("Имени"))
-                {
-                    orders = db.Orders.OrderBy(x => x.NameProduct).ToList();
-                    OnPropertyChanged("Orders");
-                }
+            var ThisUser = db.Users
+                .Where(x => x.UserID == ThisUserId)
+                .FirstOrDefault();
+
+            if (ThisUser.UserRole.Name == "kass")
+            {
+                orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
+                OnPropertyChanged("Orders");
             }
-            db.Orders.Load();
+            else
+                Orders = db.Orders.Local.ToBindingList();
+            
+            Clients = db.Clients.Local.ToBindingList();
+            Orders = db.Orders.Local.ToBindingList();
+
+
+
         }
+       
 
         public RelayCommand DelOrder
         {
@@ -135,7 +115,17 @@ namespace OATKWfpApp.ViewModel
             {
                 selectedUnit = value;
 
-                LoadOrders(selectedUnit);
+
+                if (selectedUnit.Contains("Цене"))
+                {
+                    orders = db.Orders.OrderBy(x => x.Price).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Имени"))
+                {
+                    orders = db.Orders.OrderBy(x => x.NameProduct).ToList();
+                    OnPropertyChanged("Orders");
+                }
             }
         }
 
