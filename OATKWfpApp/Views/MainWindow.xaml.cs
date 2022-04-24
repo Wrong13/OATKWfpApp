@@ -60,7 +60,7 @@ namespace OATKWfpApp.Views
         private void ActualOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
             //MainFrm.Navigate(new Uri("/Pages/PageActualOrders.xaml", UriKind.Relative));
-            MainFrm.Navigate(new Pages.PageAllOrders(IdUser));
+            MainFrm.Navigate(new Pages.PageAllOrders());
         }
     }
 }

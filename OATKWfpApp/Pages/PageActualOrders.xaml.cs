@@ -20,10 +20,10 @@ namespace OATKWfpApp.Pages
     /// </summary>
     public partial class PageAllOrders : Page
     {
-        public PageAllOrders(int UserId)
+        public PageAllOrders()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel.OrdersVM(UserId);
+            this.DataContext = new ViewModel.OrdersVM();
         }
 
         

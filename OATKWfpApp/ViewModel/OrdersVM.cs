@@ -37,7 +37,8 @@ namespace OATKWfpApp.ViewModel
 
         private RelayCommand paidStatusOrder;
         private RelayCommand delOrder;
-        
+        private string selectedUnit = "";
+
         public RelayCommand PaidStatusOrder
         {
             get
@@ -45,8 +46,8 @@ namespace OATKWfpApp.ViewModel
                 return paidStatusOrder ??
                     (paidStatusOrder = new RelayCommand((selectedItem) =>
                     {
-                        //if (selectedItem == null)
-                        //    return;
+                        if (selectedItem == null)
+                            return;
                         CFModels.Order order = selectedItem as CFModels.Order;
                         int orderID = order.Id;
                         order = db.Orders.Find(orderID);
@@ -59,36 +60,16 @@ namespace OATKWfpApp.ViewModel
         
         public OrdersVM()
         {
-
-        }
-
-
-        public OrdersVM(int ThisUserId)
-        {
             db = new CFModels.OatkContext();
             db.Clients.Load();
             db.Orders.Load();
             db.UserRoles.Load();
 
-            var ThisUser = db.Users
-                .Where(x => x.UserID == ThisUserId)
-                .FirstOrDefault();
-
-            if (ThisUser.UserRole.Name == "kass")
-            {
-                orders = db.Orders.Local.Where(x => x.IsActual == true).ToList();
-                OnPropertyChanged("Orders");
-            }
-            else
-                Orders = db.Orders.Local.ToBindingList();
-            
             Clients = db.Clients.Local.ToBindingList();
-            Orders = db.Orders.Local.ToBindingList();
-
-
-
+            Orders = db.Orders.Where(x => x.IsActual == true).ToList();
         }
        
+        
 
         public RelayCommand DelOrder
         {
@@ -107,7 +88,7 @@ namespace OATKWfpApp.ViewModel
             }
         }
 
-        private string selectedUnit = "";
+        
         public string SelectedUnit
         {
             get => selectedUnit;
@@ -118,12 +99,17 @@ namespace OATKWfpApp.ViewModel
 
                 if (selectedUnit.Contains("Цене"))
                 {
-                    orders = db.Orders.OrderBy(x => x.Price).ToList();
+                    orders = Orders.OrderBy(x => x.Price).ToList();
                     OnPropertyChanged("Orders");
                 }
                 else if (selectedUnit.Contains("Имени"))
                 {
-                    orders = db.Orders.OrderBy(x => x.NameProduct).ToList();
+                    orders = Orders.OrderBy(x => x.NameProduct).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Порядку"))
+                {
+                    orders = Orders.OrderBy(x => x.Id).ToList();
                     OnPropertyChanged("Orders");
                 }
             }
