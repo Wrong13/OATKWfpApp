@@ -23,6 +23,7 @@ namespace OATKWfpApp.Pages
         public AllUsersPage()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel.AllUsersVM();
         }
     }
 }

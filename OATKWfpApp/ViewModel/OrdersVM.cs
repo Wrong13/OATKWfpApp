@@ -94,9 +94,7 @@ namespace OATKWfpApp.ViewModel
             get
             {
                 return findUnit ?? (findUnit = new RelayCommand((FindText) =>
-                {
-                    if (FindText == null)
-                        return;
+                {                        
                     orders = Orders.Where(x => x.Id.ToString().Contains(FindText.ToString())).ToList();
                     OnPropertyChanged("Orders");
                 }));

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="1200"
+        Title="" MinHeight="450" MinWidth="1200"
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
         FontSize="18"
         FontFamily="{DynamicResource MaterialDesignFont}"
