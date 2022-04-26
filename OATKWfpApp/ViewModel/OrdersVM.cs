@@ -38,6 +38,7 @@ namespace OATKWfpApp.ViewModel
         private RelayCommand paidStatusOrder;
         private RelayCommand delOrder;
         private string selectedUnit = "";
+        private RelayCommand findUnit;
 
         public RelayCommand PaidStatusOrder
         {
@@ -88,6 +89,19 @@ namespace OATKWfpApp.ViewModel
             }
         }
 
+        public RelayCommand FindUnit
+        {
+            get
+            {
+                return findUnit ?? (findUnit = new RelayCommand((FindText) =>
+                {
+                    if (FindText == null)
+                        return;
+                    orders = Orders.Where(x => x.Id.ToString().Contains(FindText.ToString())).ToList();
+                    OnPropertyChanged("Orders");
+                }));
+            }
+        }
         
         public string SelectedUnit
         {
@@ -114,6 +128,8 @@ namespace OATKWfpApp.ViewModel
                 }
             }
         }
+
+        
 
 
         public event PropertyChangedEventHandler PropertyChanged;
