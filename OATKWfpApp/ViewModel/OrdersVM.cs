@@ -82,7 +82,7 @@ namespace OATKWfpApp.ViewModel
                        return;
 
                     var order = selectedItem as CFModels.Order;
-                    
+
                     db.Orders.Remove(order);
                     db.SaveChanges();
                 }));

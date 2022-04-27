@@ -44,6 +44,26 @@ namespace OATKWfpApp.ViewModel
             UserRoles = db.UserRoles.Local.ToBindingList();
         }
 
+        private RelayCommand addUser;
+
+
+
+        public RelayCommand AddUser
+        {
+           get
+            {
+                return addUser ?? (addUser = new RelayCommand((selectedUser) =>
+                {
+                    if (selectedUser == null)
+                        return;
+
+                    var Adduser = selectedUser as CFModels.User;
+
+                    db.Users.Remove(Adduser);
+                    db.SaveChanges();
+                }));
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

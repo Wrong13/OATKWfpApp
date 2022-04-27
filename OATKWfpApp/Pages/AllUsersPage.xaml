@@ -4,11 +4,156 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OATKWfpApp.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AllUsersPage">
+      Title="AllUsersPage"
+      FontFamily="{DynamicResource MaterialDesignFont}" 
+      FontSize="18"
+      >
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        <Border VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Отправить заказ" FontSize="30px"/>
+        </Border>
+
+        <Border Grid.Row="1">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBox MinWidth="100" MaxWidth="700" FontSize="20" VerticalAlignment="Bottom"
+                         x:Name="FindTb" >
+
+                </TextBox>
+                <TextBlock Text="Сортировать по:" Margin="5,5,5,5" FontSize="18" Height="20"/>
+                <ComboBox Text="Выбери" MinWidth="50" MaxWidth="150" Margin="5,5,50,5"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          SelectedItem="{Binding SelectedUnit}"
+                          
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          >
+                    <ComboBoxItem Content="Порядку"/>
+                    <ComboBoxItem Content="Имени"/>
+                    <ComboBoxItem Content="Цене"/>
+
+                </ComboBox>
+                <Button Content="Поиск" 
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        CommandParameter="{Binding ElementName=FindTb, Path=Text}"
+                        Command="{Binding FindUnit}"
+                        />
+
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ListBox x:Name="UsersListBox" ItemsSource="{Binding Users}" Style="{StaticResource MaterialDesignNavigationListBox}"
+                         
+                         IsSynchronizedWithCurrentItem="True"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10,10,10,10" MinWidth="800" MaxWidth="1000" 
+                                            x:Name="ActualOrderSP"
+                                            >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Id: "/>
+                                    <TextBlock Text="{Binding UserID}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Имя пользователя: "/>
+                                    <TextBlock Text="{Binding UserName}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Логин: "/>
+                                    <TextBlock Text="{Binding Login}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Пароль: "/>
+                                    <TextBlock Text="{Binding Password}"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Роль в системе: "/>
+                                        <TextBlock Text="{Binding UserRole.Name}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    
+                    <!--#region -->
+                    <!--<ListBox.ContextMenu>
+                        <ContextMenu x:Name="CntMenu"
+                            Background="#07bf96"
+                            Foreground="White"
+                            
+                            >
+                            <MenuItem Header="Сделать статус оплаченным"
+                                      CommandParameter="{Binding ElementName=OrderListBox,
+                                Path=Parent}"
+                                      Command="{Binding PaidStatusOrder}"
+                                      />
+                            <MenuItem Header="Напечатать чек"/>
+                            <MenuItem Header="Отправить на сборку"/>
+                            <MenuItem Header="Удалить заказ"
+                                      CommandTarget="{Binding ElementName=OrderListBox,Path=TemplatedParent}"
+                                Command="{Binding DelOrder,RelativeSource={RelativeSource AncestorType=ListBoxItem},XPath=Value}"/>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>-->
+                    <!--#endregion-->
+                    <ListBox.GroupStyle>
+                        <GroupStyle x:Name="Default" />
+                    </ListBox.GroupStyle>
+                </ListBox>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="3" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Добавить пользователя"
+                        FontSize="18"
+                        MinHeight="50"
+                        materialDesign:ButtonAssist.CornerRadius="22"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                
+                />
+                <Button Content="Сделать статус оплаченным" Grid.Column="1"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding PaidStatusOrder}"
+                        />
+                <Button Content="Напечатать чек" Grid.Column="2"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"/>
+                <Button Content="Удалить заказ" Grid.Column="3"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding DelOrder}"
+                        />
+            </Grid>
+        </Border>
+
     </Grid>
 </Page>
