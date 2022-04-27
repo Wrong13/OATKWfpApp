@@ -129,7 +129,7 @@
                         MinHeight="50"
                         materialDesign:ButtonAssist.CornerRadius="22"
                         Style="{StaticResource MaterialDesignFlatButton}"
-                
+                Command="{Binding AddUser}"
                 />
                 <Button Content="Сделать статус оплаченным" Grid.Column="1"
                                     FontSize="18"

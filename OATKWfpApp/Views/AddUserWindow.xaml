@@ -25,13 +25,13 @@
             <Label Content="Роль:"/>
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock Text="{Binding UserName}"/>
-            <TextBlock Text="{Binding Login}"/>
-            <TextBlock Text="{Binding Password}"/>
-            <ComboBox ItemsSource="{Binding UserRole}"/>
+            <TextBox Text="{Binding UserName}"/>
+            <TextBox Text="{Binding Login}"/>
+            <TextBox Text="{Binding Password}"/>
+            <ComboBox x:Name="UserRolesCmbBox" SelectedValuePath="Name"/>
         </StackPanel>
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
-            <Button Content="Добавить пользователя"/>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Добавить пользователя" x:Name="AddNewUserBtn" Click="AddNewUserBtn_Click"/>
         </StackPanel>
     </Grid>
 </Window>

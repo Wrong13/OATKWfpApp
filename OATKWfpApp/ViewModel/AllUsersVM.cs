@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OATKWfpApp.ViewModel
 {
@@ -52,15 +53,18 @@ namespace OATKWfpApp.ViewModel
         {
            get
             {
-                return addUser ?? (addUser = new RelayCommand((selectedUser) =>
+                return addUser ?? (addUser = new RelayCommand((o) =>
                 {
-                    if (selectedUser == null)
-                        return;
-
-                    var Adduser = selectedUser as CFModels.User;
-
-                    db.Users.Remove(Adduser);
-                    db.SaveChanges();
+                    Views.AddUserWindow userWindow = new Views.AddUserWindow(new CFModels.User());
+                    if (userWindow.ShowDialog() == true)
+                    {
+                        CFModels.User user = userWindow.User;
+                        MessageBox.Show(user.UserRole.Name.ToString());
+                        CFModels.UserRole Role = db.UserRoles.Where(x=>x.Name == user.UserRole.ToString()).FirstOrDefault();
+                        user.UserRole = Role;
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                    }
                 }));
             }
         }

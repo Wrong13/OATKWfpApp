@@ -19,12 +19,31 @@ namespace OATKWfpApp.Views
     /// </summary>
     public partial class AddUserWindow : Window
     {
+        CFModels.OatkContext db;
         public CFModels.User User { get; private set; }
         public AddUserWindow(CFModels.User user)
         {
+            db = new CFModels.OatkContext();
             InitializeComponent();
-            User = user;
+            
+            UserRolesCmbBox.ItemsSource = db.UserRoles.Select(x => x.Name).ToList();
+            UserRolesCmbBox.SelectedValue(db.UserRoles.Select(x => x.Name).ToString());
+            
+
             this.DataContext = User;
+            User = user;
+        }
+
+        private void AddNewUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(UserRolesCmbBox.SelectedValuePath.ToString());
+            this.DialogResult = true;
+        }
+
+        private void UserRolesCmbBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string role = UserRolesCmbBox.SelectedValuePath;
+            MessageBox.Show(role);
         }
     }
 }
