@@ -20,7 +20,7 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <Border VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Отправить заказ" FontSize="30px"/>
+            <Label Content="Пользователи" FontSize="30px"/>
         </Border>
 
         <Border Grid.Row="1">
@@ -89,30 +89,6 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
-                    
-                    <!--#region -->
-                    <!--<ListBox.ContextMenu>
-                        <ContextMenu x:Name="CntMenu"
-                            Background="#07bf96"
-                            Foreground="White"
-                            
-                            >
-                            <MenuItem Header="Сделать статус оплаченным"
-                                      CommandParameter="{Binding ElementName=OrderListBox,
-                                Path=Parent}"
-                                      Command="{Binding PaidStatusOrder}"
-                                      />
-                            <MenuItem Header="Напечатать чек"/>
-                            <MenuItem Header="Отправить на сборку"/>
-                            <MenuItem Header="Удалить заказ"
-                                      CommandTarget="{Binding ElementName=OrderListBox,Path=TemplatedParent}"
-                                Command="{Binding DelOrder,RelativeSource={RelativeSource AncestorType=ListBoxItem},XPath=Value}"/>
-                        </ContextMenu>
-                    </ListBox.ContextMenu>-->
-                    <!--#endregion-->
-                    <ListBox.GroupStyle>
-                        <GroupStyle x:Name="Default" />
-                    </ListBox.GroupStyle>
                 </ListBox>
             </ScrollViewer>
         </Border>
@@ -122,7 +98,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    
                 </Grid.ColumnDefinitions>
                 <Button Content="Добавить пользователя"
                         FontSize="18"
@@ -131,20 +107,15 @@
                         Style="{StaticResource MaterialDesignFlatButton}"
                 Command="{Binding AddUser}"
                 />
-                <Button Content="Сделать статус оплаченным" Grid.Column="1"
+                <Button Content="Редактировать пользователя" Grid.Column="1"
                                     FontSize="18"
                                     MinHeight="50"
                                     materialDesign:ButtonAssist.CornerRadius="22"
                                     Style="{StaticResource MaterialDesignFlatButton}"
-                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
-                        Command="{Binding PaidStatusOrder}"
+                        CommandParameter="{Binding ElementName=UsersListBox,Path=SelectedItem}"
+                        Command="{Binding EditUser}"
                         />
-                <Button Content="Напечатать чек" Grid.Column="2"
-                                    FontSize="18"
-                                    MinHeight="50"
-                                    materialDesign:ButtonAssist.CornerRadius="22"
-                                    Style="{StaticResource MaterialDesignFlatButton}"/>
-                <Button Content="Удалить пользователя" Grid.Column="3"
+               <Button Content="Удалить пользователя" Grid.Column="3"
                                     FontSize="18"
                                     MinHeight="50"
                                     materialDesign:ButtonAssist.CornerRadius="22"

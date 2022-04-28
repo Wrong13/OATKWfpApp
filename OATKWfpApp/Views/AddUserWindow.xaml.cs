@@ -40,11 +40,5 @@ namespace OATKWfpApp.Views
             
             this.DialogResult = true;
         }
-
-        private void UserRolesCmbBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string role = UserRolesCmbBox.SelectedValuePath;
-            MessageBox.Show(role);
-        }
     }
 }
