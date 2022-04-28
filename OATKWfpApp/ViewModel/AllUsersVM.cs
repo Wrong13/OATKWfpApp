@@ -46,7 +46,7 @@ namespace OATKWfpApp.ViewModel
         }
 
         private RelayCommand addUser;
-
+        private RelayCommand removeUser;
 
 
         public RelayCommand AddUser
@@ -63,6 +63,21 @@ namespace OATKWfpApp.ViewModel
                         db.Users.Add(user);
                         db.SaveChanges();
                     }
+                }));
+            }
+        }
+
+        public RelayCommand RemoveUser
+        {
+            get
+            {
+                return removeUser ?? (removeUser = new RelayCommand((selectedUser) =>
+                {
+                    if (selectedUser == null)
+                        return;
+                    CFModels.User removeUser = selectedUser as CFModels.User;
+                    db.Users.Remove(removeUser);
+                    db.SaveChanges();
                 }));
             }
         }

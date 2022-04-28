@@ -144,13 +144,13 @@
                                     MinHeight="50"
                                     materialDesign:ButtonAssist.CornerRadius="22"
                                     Style="{StaticResource MaterialDesignFlatButton}"/>
-                <Button Content="Удалить заказ" Grid.Column="3"
+                <Button Content="Удалить пользователя" Grid.Column="3"
                                     FontSize="18"
                                     MinHeight="50"
                                     materialDesign:ButtonAssist.CornerRadius="22"
                                     Style="{StaticResource MaterialDesignFlatButton}"
-                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
-                        Command="{Binding DelOrder}"
+                        CommandParameter="{Binding ElementName=UsersListBox,Path=SelectedItem}"
+                        Command="{Binding RemoveUser}"
                         />
             </Grid>
         </Border>
