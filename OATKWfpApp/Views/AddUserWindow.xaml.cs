@@ -27,16 +27,17 @@ namespace OATKWfpApp.Views
             InitializeComponent();
             
             UserRolesCmbBox.ItemsSource = db.UserRoles.Select(x => x.Name).ToList();
-            
-            //user.UserRole = role;
-            this.DataContext = User;
+
             User = user;
+            this.DataContext = User;
+            
         }
 
         private void AddNewUserBtn_Click(object sender, RoutedEventArgs e)
         {
             Object selectedItem = UserRolesCmbBox.SelectedItem;
-            MessageBox.Show(selectedItem.ToString());
+            User.UserRoleID = db.UserRoles.Where(x => x.Name == selectedItem.ToString()).Select(x=>x.ID).FirstOrDefault();
+            
             this.DialogResult = true;
         }
 

@@ -59,9 +59,7 @@ namespace OATKWfpApp.ViewModel
                     if (userWindow.ShowDialog() == true)
                     {
                         CFModels.User user = userWindow.User;
-                        MessageBox.Show(user.UserRole.Name.ToString());
-                        CFModels.UserRole Role = db.UserRoles.Where(x=>x.Name == user.UserRole.ToString()).FirstOrDefault();
-                        user.UserRole = Role;
+                        
                         db.Users.Add(user);
                         db.SaveChanges();
                     }
