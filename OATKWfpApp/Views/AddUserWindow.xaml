@@ -28,7 +28,7 @@
             <TextBox Text="{Binding UserName}"/>
             <TextBox Text="{Binding Login}"/>
             <TextBox Text="{Binding Password}"/>
-            <ComboBox x:Name="UserRolesCmbBox" SelectedValuePath="Name"/>
+            <ComboBox x:Name="UserRolesCmbBox"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Сохранить" x:Name="AddNewUserBtn" Click="AddNewUserBtn_Click"/>

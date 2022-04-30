@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AllOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AllUsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,12 +162,16 @@
       <DependentUpon>202204130700554_Step5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Pages\AllOrdersPage.xaml.cs">
+      <DependentUpon>AllOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AllUsersPage.xaml.cs">
       <DependentUpon>AllUsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageActualOrders.xaml.cs">
       <DependentUpon>PageActualOrders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AllOrdersVM.cs" />
     <Compile Include="ViewModel\AllUsersVM.cs" />
     <Compile Include="ViewModel\BindingProxy.cs" />
     <Compile Include="ViewModel\OrdersVM.cs" />

@@ -1,0 +1,154 @@
+﻿<Page x:Class="OATKWfpApp.Pages.AllOrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Title="AllOrdersPage"
+      xmlns:local="clr-namespace:OATKWfpApp.ViewModel" d:DataContext="{d:DesignInstance Type=local:AllOrdersVM}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      FontFamily="{DynamicResource MaterialDesignFont}" 
+      FontSize="18"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        <Border VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Все заказы" FontSize="30px"/>
+        </Border>
+
+        <Border Grid.Row="1">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBox MinWidth="100" MaxWidth="700" FontSize="20" VerticalAlignment="Bottom"
+                         x:Name="FindTb" >
+
+                </TextBox>
+                <TextBlock Text="Сортировать по:" Margin="5,5,5,5" FontSize="18" Height="20"/>
+                <ComboBox Text="Выбери" MinWidth="50" MaxWidth="150" Margin="5,5,50,5"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          SelectedItem="{Binding SelectedUnit}"
+                          
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          >
+                    <ComboBoxItem Content="Порядку"/>
+                    <ComboBoxItem Content="Имени"/>
+                    <ComboBoxItem Content="Цене"/>
+
+                </ComboBox>
+                <Button Content="Поиск" 
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        CommandParameter="{Binding ElementName=FindTb, Path=Text}"
+                        Command="{Binding FindUnit}"
+                        />
+
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ListBox x:Name="OrderListBox" ItemsSource="{Binding Orders}" Style="{StaticResource MaterialDesignNavigationListBox}"
+                         Tag="{Binding ElementName=OrderListBox}"
+                         IsSynchronizedWithCurrentItem="True"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10,10,10,10" MinWidth="650" MaxWidth="1000" 
+                                            x:Name="ActualOrderSP"
+                                            >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Номер: "/>
+                                    <TextBlock Text="{Binding Id}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Название товара(ов): "/>
+                                    <TextBlock Text="{Binding NameProduct}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Имя заказчика: "/>
+                                    <TextBlock Text="{Binding Client.Name}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Created}" />
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Column="7">
+                                            <TextBlock Text="{Binding Price}"/>
+                                            <TextBlock Text=" ₽"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.Resources>
+                        <local:BindingProxy x:Key="Proxy" Data="{Binding}"/>
+                    </ListBox.Resources>
+                    
+                    <ListBox.GroupStyle>
+                        <GroupStyle x:Name="Default" />
+                    </ListBox.GroupStyle>
+                </ListBox>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="3" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Отправить на сборку"
+                        FontSize="18"
+                        MinHeight="50"
+                        materialDesign:ButtonAssist.CornerRadius="22"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                
+                />
+                <Button Content="Сделать статус оплаченным" Grid.Column="1"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding PaidStatusOrder}"
+                        />
+                <Button Content="Напечатать чек" Grid.Column="2"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"/>
+                <Button Content="Удалить заказ" Grid.Column="3"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding DelOrder}"
+                        />
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>
