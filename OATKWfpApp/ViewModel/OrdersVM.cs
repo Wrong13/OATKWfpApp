@@ -37,8 +37,32 @@ namespace OATKWfpApp.ViewModel
 
         private RelayCommand paidStatusOrder;
         private RelayCommand delOrder;
+        private RelayCommand goPackOrder;
         private string selectedUnit = "";
         private RelayCommand findUnit;
+
+        public RelayCommand GoPackOrder
+        {
+            get
+            {
+                return goPackOrder ??
+                    (goPackOrder = new RelayCommand((selectedItem) =>
+                    {
+                        if (selectedItem == null)
+                            return;
+                        CFModels.Order order = selectedItem as CFModels.Order;
+                        CFModels.PackOrder packOrder = new CFModels.PackOrder();
+                        if (db.PackOrders.Where(x => x.OrderId == order.Id).ToList() != null)
+                            return;
+                        packOrder.OrderId = order.Id;
+                        packOrder.IsPack = false;
+                        order.IsActual = false;
+                        db.PackOrders.Add(packOrder);
+                        db.Entry(order).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }));
+            }
+        }
 
         public RelayCommand PaidStatusOrder
         {
@@ -54,6 +78,7 @@ namespace OATKWfpApp.ViewModel
                         order = db.Orders.Find(orderID);
                         order.IsBuy = true;
                         db.Entry(order).State = EntityState.Modified;
+                        
                         db.SaveChanges();
                     }));
             }

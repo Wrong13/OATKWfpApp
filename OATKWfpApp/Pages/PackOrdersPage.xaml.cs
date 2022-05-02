@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace OATKWfpApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AllOrdersPage.xaml
+    /// Логика взаимодействия для PackOrdersPage.xaml
     /// </summary>
-    public partial class AllOrdersPage : Page
+    public partial class PackOrdersPage : Page
     {
-        public AllOrdersPage()
+        public PackOrdersPage()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel.AllOrdersVM();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OATKWfpApp.CFModels
         public bool IsActual { get; set; }
         public decimal Price { get; set; }
         public Client Client { get; set; }
-        public List<HistoryOrder> HistoryOrders  { get; set; }
+        public List<PackOrder> PackOrders { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

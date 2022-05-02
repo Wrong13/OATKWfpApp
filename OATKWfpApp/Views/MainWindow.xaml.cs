@@ -35,7 +35,7 @@ namespace OATKWfpApp.Views
             if (userRole == "kass")
             {
                 AllUsersBtn.Visibility = Visibility.Collapsed;
-                HistoryOrdersBtn.Visibility = Visibility.Collapsed;
+                PackOrderBtn.Visibility = Visibility.Collapsed;
             }
             else if (userRole == "superadmin")
             {
@@ -45,21 +45,21 @@ namespace OATKWfpApp.Views
 
         private void AllOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
+            MainFrm.Navigate(new Pages.AllOrdersPage());
         }
 
         private void AllUsersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrm.Navigate(new Uri("/Pages/AllUsersPage.xaml", UriKind.Relative));
+            MainFrm.Navigate(new Pages.AllUsersPage());
         }
 
-        private void HistoryOrdersBtn_Click(object sender, RoutedEventArgs e)
+        private void PackOrderBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void ActualOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrm.Navigate(new Uri("/Pages/PageActualOrders.xaml", UriKind.Relative));
             MainFrm.Navigate(new Pages.PageAllOrders());
         }
     }

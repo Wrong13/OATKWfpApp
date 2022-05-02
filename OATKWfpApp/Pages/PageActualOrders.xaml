@@ -143,7 +143,8 @@
                         MinHeight="50"
                         materialDesign:ButtonAssist.CornerRadius="22"
                         Style="{StaticResource MaterialDesignFlatButton}"
-                
+                        CommandParameter="{Binding ElementName=OrderListBox,Path=SelectedItem}"
+                        Command="{Binding GoPackOrder}"
                 />
                 <Button Content="Сделать статус оплаченным" Grid.Column="1"
                                     FontSize="18"

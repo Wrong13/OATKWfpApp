@@ -22,6 +22,7 @@
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     Content="Все заказы"
                         x:Name="AllOrdersBtn"
+                        Click="AllOrdersBtn_Click"
                     />
                 <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -36,9 +37,9 @@
                     />
                 <Button materialDesign:ButtonAssist.CornerRadius="0 0 20 30"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    Content="История заказов"
-                    x:Name="HistoryOrdersBtn"
-                        Click="HistoryOrdersBtn_Click"
+                    Content="Собрать заказ"
+                    x:Name="PackOrderBtn"
+                        Click="PackOrderBtn_Click"
                     />
             </StackPanel>
         </Border>

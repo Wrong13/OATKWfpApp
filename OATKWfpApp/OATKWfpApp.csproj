@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PackOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PageActualOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,9 +104,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CFModels\Client.cs" />
-    <Compile Include="CFModels\HistoryOrder.cs" />
     <Compile Include="CFModels\OatkContext.cs" />
     <Compile Include="CFModels\Order.cs" />
+    <Compile Include="CFModels\PackOrder.cs" />
     <Compile Include="CFModels\User.cs" />
     <Compile Include="CFModels\UserRole.cs" />
     <Compile Include="Migrations\202204061103025_InitialCreate.cs" />
@@ -161,12 +165,23 @@
     <Compile Include="Migrations\202204130700554_Step5.designer.cs">
       <DependentUpon>202204130700554_Step5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205021237202_HistoryOrdersRemove.cs" />
+    <Compile Include="Migrations\202205021237202_HistoryOrdersRemove.designer.cs">
+      <DependentUpon>202205021237202_HistoryOrdersRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205021258266_AddPackOrder.cs" />
+    <Compile Include="Migrations\202205021258266_AddPackOrder.designer.cs">
+      <DependentUpon>202205021258266_AddPackOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\AllOrdersPage.xaml.cs">
       <DependentUpon>AllOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AllUsersPage.xaml.cs">
       <DependentUpon>AllUsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PackOrdersPage.xaml.cs">
+      <DependentUpon>PackOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageActualOrders.xaml.cs">
       <DependentUpon>PageActualOrders.xaml</DependentUpon>
@@ -242,6 +257,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204130700554_Step5.resx">
       <DependentUpon>202204130700554_Step5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205021237202_HistoryOrdersRemove.resx">
+      <DependentUpon>202205021237202_HistoryOrdersRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205021258266_AddPackOrder.resx">
+      <DependentUpon>202205021258266_AddPackOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

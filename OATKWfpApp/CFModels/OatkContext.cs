@@ -13,10 +13,11 @@ namespace OATKWfpApp.CFModels
             {
 
             }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<HistoryOrder> HistoryOrders { get; set; }
+        public DbSet<PackOrder> PackOrders { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
     }
 }
