@@ -37,8 +37,11 @@ namespace OATKWfpApp.Views
                 AllUsersBtn.Visibility = Visibility.Collapsed;
                 PackOrderBtn.Visibility = Visibility.Collapsed;
             }
-            else if (userRole == "superadmin")
+            else if (userRole == "sbor")
             {
+                AllUsersBtn.Visibility = Visibility.Collapsed;
+                AllOrdersBtn.Visibility = Visibility.Collapsed;
+                ActualOrdersBtn.Visibility = Visibility.Collapsed;
 
             }
         }
