@@ -35,6 +35,13 @@ namespace OATKWfpApp.ViewModel
                 OnPropertyChanged("UserRoles");
             }
         }
+        
+        private void UpdateUsers()
+        {
+            Users = db.Users.Local.ToBindingList();
+            OnPropertyChanged("Users");
+        }
+
         public AllUsersVM()
         {
             db = new CFModels.OatkContext();
@@ -48,6 +55,8 @@ namespace OATKWfpApp.ViewModel
         private RelayCommand addUser;
         private RelayCommand removeUser;
         private RelayCommand editUser;
+        private string selectedUnit;
+        private RelayCommand findUnit;
 
         public RelayCommand AddUser
         {
@@ -97,12 +106,43 @@ namespace OATKWfpApp.ViewModel
                         editUser = editUserWindow.User;
                         db.Entry(editUser).State = EntityState.Modified;
                         db.SaveChanges();
-                        
                     }
+                    UpdateUsers();
                 }));
             }
         }
 
+        public RelayCommand FindUnit
+        {
+            get
+            {
+                return findUnit ?? (findUnit = new RelayCommand((FindText) =>
+                {
+                    users = Users.Where(x => x.UserID.ToString().Contains(FindText.ToString())).ToList();
+                    OnPropertyChanged("Users");
+                }));
+            }
+        }
+
+        public string SelectedUnit
+        {
+            get => selectedUnit;
+            set
+            {
+                selectedUnit = value;
+
+                if (selectedUnit.Contains("Имени"))
+                {
+                    users = Users.OrderBy(x => x.UserName).ToList();
+                    OnPropertyChanged("Users");
+                }
+                else if (selectedUnit.Contains("Порядку"))
+                {
+                    users = Users.OrderBy(x => x.UserID).ToList();
+                    OnPropertyChanged("Users");
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

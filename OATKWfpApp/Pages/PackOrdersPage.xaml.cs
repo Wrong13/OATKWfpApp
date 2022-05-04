@@ -23,6 +23,7 @@ namespace OATKWfpApp.Pages
         public PackOrdersPage()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel.PackOrderVM();
         }
     }
 }

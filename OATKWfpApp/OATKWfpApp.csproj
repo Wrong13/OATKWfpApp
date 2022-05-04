@@ -190,6 +190,7 @@
     <Compile Include="ViewModel\AllUsersVM.cs" />
     <Compile Include="ViewModel\BindingProxy.cs" />
     <Compile Include="ViewModel\OrdersVM.cs" />
+    <Compile Include="ViewModel\PackOrderVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="Views\AddUserWindow.xaml.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>

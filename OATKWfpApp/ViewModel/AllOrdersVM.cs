@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OATKWfpApp.ViewModel
 {
@@ -62,18 +63,23 @@ namespace OATKWfpApp.ViewModel
                     {
                         if (selectedItem == null)
                             return;
-
                         CFModels.Order order = selectedItem as CFModels.Order;
-                        if (db.PackOrders.Where(x => x.OrderId == order.Id).ToList() != null)
-                            return;
-
                         CFModels.PackOrder packOrder = new CFModels.PackOrder();
+
                         packOrder.OrderId = order.Id;
+                        if (db.PackOrders.Select(x => x.OrderId == packOrder.OrderId).FirstOrDefault() == true)
+                        {
+                            MessageBox.Show("Такая запись уже имеется");
+                            return;
+                        }
+
                         packOrder.IsPack = false;
                         order.IsActual = false;
                         db.PackOrders.Add(packOrder);
                         db.Entry(order).State = EntityState.Modified;
                         db.SaveChanges();
+                        OnPropertyChanged("Orders");
+
                     }));
             }
         }
@@ -146,6 +152,34 @@ namespace OATKWfpApp.ViewModel
                 else if (selectedUnit.Contains("Порядку"))
                 {
                     orders = Orders.OrderBy(x => x.Id).ToList();
+                    OnPropertyChanged("Orders");
+                }
+            }
+        }
+
+        public string SelectedUnitPay
+        {
+            get => selectedUnit;
+            set
+            {
+                selectedUnit = value;
+
+
+                if (selectedUnit.Contains("Все"))
+                {
+                    Orders = db.Orders.Local.ToBindingList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Оплаченные"))
+                {
+                    Orders = db.Orders.Local.ToBindingList();
+                    orders = Orders.Where(x => x.IsBuy == true).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Не оплаченные"))
+                {
+                    Orders = db.Orders.Local.ToBindingList();
+                    orders = Orders.Where(x => x.IsBuy == false).ToList();
                     OnPropertyChanged("Orders");
                 }
             }

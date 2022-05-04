@@ -55,7 +55,7 @@ namespace OATKWfpApp.Views
 
         private void PackOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrm.Navigate(new Pages.PackOrdersPage());
         }
 
         private void ActualOrdersBtn_Click(object sender, RoutedEventArgs e)

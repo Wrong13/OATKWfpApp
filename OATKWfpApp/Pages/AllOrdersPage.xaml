@@ -49,6 +49,19 @@
                         />
 
 
+                <ComboBox Text="Выбери" MinWidth="50" MaxWidth="250" Margin="50,5,5,5"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          SelectedItem="{Binding SelectedUnitPay}"
+                          
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          >
+                    <ComboBoxItem Content="Все"/>
+                    <ComboBoxItem Content="Оплаченные"/>
+                    <ComboBoxItem Content="Не оплаченные"/>
+
+                </ComboBox>
+                
             </StackPanel>
         </Border>
 

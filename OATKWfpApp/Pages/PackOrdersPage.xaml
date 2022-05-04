@@ -4,11 +4,106 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OATKWfpApp.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PackOrdersPage">
+      Title="PackOrdersPage"
+      FontFamily="{DynamicResource MaterialDesignFont}" 
+      FontSize="18"
+      >
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        <Border VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Собрать заказ" FontSize="30px"/>
+        </Border>
+
+        <Border Grid.Row="1">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBox MinWidth="100" MaxWidth="700" FontSize="20" VerticalAlignment="Bottom"
+                         x:Name="FindTb" >
+
+                </TextBox>
+                <TextBlock Text="Сортировать по:" Margin="5,5,5,5" FontSize="18" Height="20"/>
+                <ComboBox Text="Выбери" MinWidth="50" MaxWidth="150" Margin="5,5,50,5"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          SelectedItem="{Binding SelectedUnit}"
+                          
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          >
+                    <ComboBoxItem Content="Порядку"/>
+                    <ComboBoxItem Content="Имени"/>
+
+                </ComboBox>
+                <Button Content="Поиск" 
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        CommandParameter="{Binding ElementName=FindTb, Path=Text}"
+                        Command="{Binding FindUnit}"
+                        />
+
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ListBox x:Name="PackOrdersListBox" ItemsSource="{Binding PackOrders}" Style="{StaticResource MaterialDesignNavigationListBox}"
+                         
+                         IsSynchronizedWithCurrentItem="True"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10,10,10,10" MinWidth="800" MaxWidth="1000" 
+                                            x:Name="ActualOrderSP"
+                                            >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Id заказа: "/>
+                                    <TextBlock Text="{Binding OrderId}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Названия продуктов: "/>
+                                    <TextBlock Text="{Binding Order.NameProduct}"/>
+                                </StackPanel>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="3" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+                <Button Content="Выдать заказ"
+                        FontSize="18"
+                        MinHeight="50"
+                        materialDesign:ButtonAssist.CornerRadius="22"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=PackOrdersListBox,Path=SelectedItem}"
+                Command="{Binding IssueOrder}"
+                />
+               
+                <Button Content="Отменить заказ" Grid.Column="3"
+                                    FontSize="18"
+                                    MinHeight="50"
+                                    materialDesign:ButtonAssist.CornerRadius="22"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                        CommandParameter="{Binding ElementName=PackOrdersListBox,Path=SelectedItem}"
+                        Command="{Binding CancelOrder}"
+                        />
+            </Grid>
+        </Border>
+
     </Grid>
 </Page>

@@ -41,6 +41,7 @@ namespace OATKWfpApp.ViewModel
         private string selectedUnit = "";
         private RelayCommand findUnit;
 
+
         public RelayCommand GoPackOrder
         {
             get
@@ -52,37 +53,26 @@ namespace OATKWfpApp.ViewModel
                             return;
                         CFModels.Order order = selectedItem as CFModels.Order;
                         CFModels.PackOrder packOrder = new CFModels.PackOrder();
-                        if (db.PackOrders.Where(x => x.OrderId == order.Id).ToList() != null)
-                            return;
+
                         packOrder.OrderId = order.Id;
+                        if (db.PackOrders.Select(x => x.OrderId == packOrder.OrderId).ToList().Count > 0)
+                        {
+                            MessageBox.Show("Такая запись уже имеется");
+                            return;
+                        }
+                           
                         packOrder.IsPack = false;
                         order.IsActual = false;
                         db.PackOrders.Add(packOrder);
                         db.Entry(order).State = EntityState.Modified;
                         db.SaveChanges();
+                        OnPropertyChanged("Orders");
+                        
                     }));
             }
         }
 
-        public RelayCommand PaidStatusOrder
-        {
-            get
-            {
-                return paidStatusOrder ??
-                    (paidStatusOrder = new RelayCommand((selectedItem) =>
-                    {
-                        if (selectedItem == null)
-                            return;
-                        CFModels.Order order = selectedItem as CFModels.Order;
-                        int orderID = order.Id;
-                        order = db.Orders.Find(orderID);
-                        order.IsBuy = true;
-                        db.Entry(order).State = EntityState.Modified;
-                        
-                        db.SaveChanges();
-                    }));
-            }
-        }
+       
         
         public OrdersVM()
         {
@@ -94,8 +84,31 @@ namespace OATKWfpApp.ViewModel
             Clients = db.Clients.Local.ToBindingList();
             Orders = db.Orders.Where(x => x.IsActual == true).ToList();
         }
-       
-        
+
+
+        public RelayCommand PaidStatusOrder
+        {
+            get
+            {
+                return paidStatusOrder ??
+                    (paidStatusOrder = new RelayCommand((selectedItem) =>
+                    {
+                        if (selectedItem == null)
+                            return;
+
+                        
+
+                        CFModels.Order order = selectedItem as CFModels.Order;
+                        int orderID = order.Id;
+                        order = db.Orders.Find(orderID);
+                        order.IsBuy = true;
+                        db.Entry(order).State = EntityState.Modified;
+
+                        db.SaveChanges();
+                    }));
+            }
+        }
+
 
         public RelayCommand DelOrder
         {
@@ -113,6 +126,8 @@ namespace OATKWfpApp.ViewModel
                 }));
             }
         }
+
+        
 
         public RelayCommand FindUnit
         {
@@ -152,7 +167,35 @@ namespace OATKWfpApp.ViewModel
             }
         }
 
-        
+        public string SelectedUnitPay
+        {
+            get => selectedUnit;
+            set
+            {
+                selectedUnit = value;
+
+
+                if (selectedUnit.Contains("Все"))
+                {
+                    Orders = db.Orders.Where(x => x.IsActual == true).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Оплаченные"))
+                {
+                    Orders = db.Orders.Where(x => x.IsActual == true).ToList();
+                    orders = Orders.Where(x => x.IsBuy == true).ToList();
+                    OnPropertyChanged("Orders");
+                }
+                else if (selectedUnit.Contains("Не оплаченные"))
+                {
+                    Orders = db.Orders.Where(x => x.IsActual == true).ToList();
+                    orders = Orders.Where(x => x.IsBuy == false).ToList();
+                    OnPropertyChanged("Orders");
+                }
+            }
+        }
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

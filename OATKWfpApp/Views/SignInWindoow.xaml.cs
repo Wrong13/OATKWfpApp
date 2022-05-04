@@ -34,12 +34,12 @@ namespace OATKWfpApp
             this.Close();
         }
 
-        private async void SignInBtn_Click(object sender, RoutedEventArgs e)
+        private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            var ThisUser = await db.Users
+            var ThisUser = db.Users
                 .Where(x => x.Login == LoginBox.Text)
                 .Where(x => x.Password == PassBox.Password)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
             if (ThisUser != null)
             {
                 Views.MainWindow main = new Views.MainWindow(ThisUser.UserID);
